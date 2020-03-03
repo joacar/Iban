@@ -1,0 +1,14 @@
+<!--Root -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+    <SolutionDir Condition="'$(SolutionDir)' != ''">$(MSBuildStartupDirectory)</SolutionDir>
+    <ArtifactsDir Condition="'$(ArtifactsDir)' == ''">$(SolutionDir)/artifacts</ArtifactsDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(ArtifactsDir)/build/$(MSBuildProjectName)/obj/</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(ArtifactsDir)/build/$(MSBuildProjectName)/bin/</BaseOutputPath>
+  </PropertyGroup>  
+</Project>
