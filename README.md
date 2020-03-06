@@ -1,7 +1,11 @@
 # IBAN
 
 An implementation of the [modulo 97](https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN) algorithm for calculating checksum avoiding use of large integers and allow operation in unsigned integers (< 2^31).
-Properties of [congruence relations](https://en.wikipedia.org/wiki/Congruence_relation), more specifically [this](https://math.stackexchange.com/questions/1918217/the-mod97-operation-in-iban-validation), give the correctnes of algorithm
+Properties of [congruence relations](https://en.wikipedia.org/wiki/Congruence_relation), more specifically [this](https://math.stackexchange.com/questions/1918217/the-mod97-operation-in-iban-validation), give the correctnes of algorithm.
+
+## Background
+
+The project started to become acquainted with `Span<T>` to reduce costly string manipulations when calculating the checksum. Along the way I realized that it's possible without any allocations, so the use of `ReadOnlySpan<char>` in this case could just as well be replaced with `char[]`. The iterator `IbanDigitizer` could then strip the `ref` keyword which would allow to implement `IReadOnlyCollection<int>` and make for an even neater API.
 
 ## Example
 
